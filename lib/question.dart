@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+//custom question widget
 class Question extends StatelessWidget {
   final String questionText;
 
