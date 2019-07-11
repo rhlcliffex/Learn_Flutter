@@ -11,7 +11,10 @@ import './answer.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  void answerQuestion(){
+  var questionIndex = 0;
+
+  void answerQuestion() {
+    questionIndex = questionIndex + 1;
     print('Answer chosen!');
   }
 
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
               title: Text('My First App'),
             ),
             body: Column(children: [
-              Text('The question!'),
+              Text(questions[questionIndex]),
               RaisedButton(
                 child: Text('Answer 1'),
                 onPressed: answerQuestion,
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
               ),
               RaisedButton(
                 child: Text('Answer 3'),
-                onPressed: (){
+                onPressed: () {
                   print('Answer 3 chosen');
                 },
               )
