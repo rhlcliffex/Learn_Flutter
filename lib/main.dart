@@ -16,6 +16,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final questions = [
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answers': ['Orange', 'Saffron', 'Yellow', 'Red']
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answers': ['Rabbit', 'Lion', 'elephant', 'Tiger']
+    },
+    {
+      'questionText': 'What\'s your favorite programming language?',
+      'answers': ['C++', 'Java', 'Dart', 'Kotlin']
+    },
+  ];
+
   var _questionIndex = 0;
 
   void _answerQuestion() {
@@ -23,36 +38,32 @@ class _MyAppState extends State<MyApp> {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
+
+    if (_questionIndex < questions.length) {
+      print('there are more questions');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      {
-        'questionText': 'What\'s your favorite color?',
-        'answers': ['Orange', 'Saffron', 'Yellow', 'Red']
-      },
-      {
-        'questionText': 'What\'s your favorite animal?',
-        'answers': ['Rabbit', 'Lion', 'elephant', 'Tiger']
-      },
-      {
-        'questionText': 'What\'s your favorite programming language?',
-        'answers': ['C++', 'Java', 'Dart', 'Kotlin']
-      },
-    ];
     // TODO: implement build
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
               title: Text('My First App'),
             ),
-            body: Column(children: [
-              Question(questions[_questionIndex]['questionText']),
-              ...(questions[_questionIndex]['answers'] as List<String>)
-                  .map((answer) {
-                return Answer(_answerQuestion, answer);
-              })
-            ])));
+            body: (_questionIndex < questions.length)
+                ? Column(children: [
+                    Question(questions[_questionIndex]['questionText']),
+                    ...(questions[_questionIndex]['answers'] as List<String>) // use of speard operator => takes values of list and add them to surrounding list
+                        .map((answer) {
+                      return Answer(_answerQuestion, answer);
+                    })
+                  ])
+                : Center(
+                    child: Text('You did it!'),
+                  )
+        )
+    );
   }
 }
