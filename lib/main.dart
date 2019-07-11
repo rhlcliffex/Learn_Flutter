@@ -48,12 +48,11 @@ class _MyAppState extends State<MyApp> {
               title: Text('My First App'),
             ),
             body: Column(children: [
-              Question(
-                  questions[_questionIndex]['questionText']
-              ),
-              Answer(_answerQuestion, 'Answer 1'),
-              Answer(_answerQuestion, 'Answer 2'),
-              Answer(_answerQuestion, 'Answer 3'),
+              Question(questions[_questionIndex]['questionText']),
+              ...(questions[_questionIndex]['answers'] as List<String>)
+                  .map((answer) {
+                return Answer(_answerQuestion, answer);
+              })
             ])));
   }
 }
