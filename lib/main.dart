@@ -53,16 +53,8 @@ class _MyAppState extends State<MyApp> {
               title: Text('My First App'),
             ),
             body: (_questionIndex < questions.length)
-                ? Column(children: [
-                    Question(questions[_questionIndex]['questionText']),
-                    ...(questions[_questionIndex]['answers'] as List<String>) // use of speard operator => takes values of list and add them to surrounding list
-                        .map((answer) {
-                      return Answer(_answerQuestion, answer);
-                    })
-                  ])
-                : Center(
-                    child: Text('You did it!'),
-                  )
+                ? Quiz(questions: questions, answerQuestion: _answerQuestion, questionIndex: _questionIndex)
+                : Result()
         )
     );
   }
