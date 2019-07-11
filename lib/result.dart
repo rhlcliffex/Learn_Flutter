@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-
+// custom result widget
 class Result extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
